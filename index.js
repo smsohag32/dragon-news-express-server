@@ -22,11 +22,16 @@ app.get('/news/:id', (req,res) =>{
 
 app.get('/categories/:id', (req,res) => {
     // get id
-    const id = req.params.id;
-    const categoriesNews = news.filter(n => n._id == id)
-    res.send(categoriesNews);
+    const id = parseInt(req.params.id);
+     if(id === 0){
+        res.send(news)
+    }else{
+        const categoriesNews = news.filter(n => n.category_id == id)
+        res.send(categoriesNews);
+    }
+    
 })
 
 app.listen(port, () =>{
-   console.log(port); 
+   console.log(port);
 })
